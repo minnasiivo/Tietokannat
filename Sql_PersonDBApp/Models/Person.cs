@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
+
+namespace Sql_PersonDBApp.Models
+{
+    public partial class Person
+    {
+        public Person()
+        {
+            ContactInfos = new HashSet<ContactInfo>();
+            Phones = new HashSet<Phone>();
+            Shoes = new HashSet<Shoe>();
+        }
+
+        public long Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string City { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public string Sex { get; set; }
+        public string EyeColor { get; set; }
+        public int? ShoeSize { get; set; }
+        public int? Height { get; set; }
+
+        public virtual ICollection<ContactInfo> ContactInfos { get; set; }
+        public virtual ICollection<Phone> Phones { get; set; }
+        public virtual ICollection<Shoe> Shoes { get; set; }
+    }
+}
