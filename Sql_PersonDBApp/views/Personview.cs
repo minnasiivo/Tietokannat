@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
 using Sql_PersonDBApp.Models;
 using Sql_PersonDBApp.Services;
 
@@ -31,7 +32,7 @@ namespace Sql_PersonDBApp.views
              newPerson.Sex = Console.ReadLine();
              Console.WriteLine("Silmien väri?");
              newPerson.EyeColor = Console.ReadLine();
-             Console.WriteLine("Silmien väri?");
+             Console.WriteLine("Kengän koko?");
              newPerson.ShoeSize =int.Parse(Console.ReadLine());
             Console.WriteLine("Pituus[cm]?");
             newPerson.Height = int.Parse(Console.ReadLine()); 
@@ -48,9 +49,9 @@ namespace Sql_PersonDBApp.views
 
         public void DeletePerson()
         {
-            Console.Write("Anna poistettavan henkilön Id");
+            Console.Write("Anna poistettavan henkilön Id: ");
             long id =Convert.ToInt64(Console.ReadLine());
-            _personService.DeletePerson(id);
+            _personService.Delete(id);
         }
 
         public void PrintAllPeople()
@@ -61,14 +62,15 @@ namespace Sql_PersonDBApp.views
 
         public void PrintByCIty()
         {
-            Console.Write("Syötä kaupungin nimi");
+            Console.Write("Syötä kaupungin nimi: ");
             string city = Console.ReadLine();
             var people = _personService.Read(city);
+            PrintPeople(people);
         }
 
         public void PrintSinglePerson()
         {
-            Console.Write("Syötä henkilön id");
+            Console.Write("Syötä henkilön id: ");
             long id = Convert.ToInt64(Console.ReadLine());
                 var person = _personService.Read(id);
             PrintPerson(person);
@@ -76,7 +78,7 @@ namespace Sql_PersonDBApp.views
 
         public void UpdatePerson()
         {
-            Console.Write("Syötä henkilön id");
+            Console.Write("Syötä henkilön id: ");
             long id = Convert.ToInt64(Console.ReadLine());
             var person = _personService.Read(id);
             //kysy uudet arvot
@@ -86,13 +88,11 @@ namespace Sql_PersonDBApp.views
             person.LastName = Console.ReadLine();
             Console.WriteLine("Anna  henkilön uusi kaupunki");
             person.City = Console.ReadLine();
-            Console.WriteLine("Anna syntymäpäivä muodossa (yyyy-mm-dd)");
-            person.DateOfBirth = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Anna sukupuoli (male/female/other)");
             person.Sex = Console.ReadLine();
             Console.WriteLine("Silmien väri?");
             person.EyeColor = Console.ReadLine();
-            Console.WriteLine("Silmien väri?");
+            Console.WriteLine("Kengän koko?");
             person.ShoeSize = int.Parse(Console.ReadLine());
             Console.WriteLine("Pituus[cm]?");
             person.Height = int.Parse(Console.ReadLine());
@@ -108,9 +108,10 @@ namespace Sql_PersonDBApp.views
             }
         }
         private void PrintPerson(Person person)
-        { 
+        {
+        
+            Console.WriteLine($"{person.Id}\t\t{person.FirstName}\t\t{person.LastName}\t{person.Sex}\t{person.City}\t{person.DateOfBirth}\t{person.Height}");
             
-                Console.WriteLine($"{person.Id}\t{person.FirstName}\t{person.LastName}\t{person.Sex}\t{person.City}");
         }
         
     }

@@ -8,5 +8,9 @@ namespace Sql_PersonDBApp.views
     {
         void CreatePerson();
         void PrintAllPeople();
+        void PrintSinglePerson();
+        void PrintByCIty();
+        void UpdatePerson();
+        void DeletePerson();
     }
 }

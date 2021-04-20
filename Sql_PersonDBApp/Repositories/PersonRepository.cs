@@ -32,18 +32,40 @@ namespace Sql_PersonDBApp.Repositories
 
         public void DeletePerson(Person person)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.People.Remove(person);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        public List<Person> ReadAllPeople()
+        public List<Person> Read()
         {
             var people = _context.People.ToList();
             return people;
         }
 
+        public Person Read(long id)
+        {
+            var person = _context.People.Find(id);
+            return person;
+        }
+
+        public List<Person> Read(string city)
+        {
+            var people = _context.People.Where(p => p.City == city).ToList();
+            return people;
+        }
+
         public Person UpdatePerson(Person person)
         {
-            throw new NotImplementedException();
+           var updatePerson = _context.People.Update(person).Entity;
+            _context.SaveChanges();
+            return updatePerson;
         }
     }
 }

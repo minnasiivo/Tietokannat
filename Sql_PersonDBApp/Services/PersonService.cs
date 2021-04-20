@@ -21,10 +21,44 @@ namespace Sql_PersonDBApp.Services
             return createdPerson;
         }
 
-        public List<Person> ReadAll()
+        public void Delete(long id)
         {
-            var people = _personRepository.ReadAllPeople();
+            var person = _personRepository.Read(id);
+            _personRepository.DeletePerson(person);
+        }
+
+        public List<Person> Read()
+        {
+            var people = _personRepository.Read();
             return people;
+        }
+
+        public Person Read(long id)
+        {
+            var person = _personRepository.Read(id);
+            return person;
+        }
+
+        public List<Person> Read(string city)
+        {
+            var people = _personRepository.Read(city);
+            return people;
+        }
+
+        public Person Update(long id, Person person)
+        {
+            var dbPerson = _personRepository.Read(id);
+            if (dbPerson != null)
+            {
+                person.Id = id;
+                var updatePerson=_personRepository.UpdatePerson(person);
+                return updatePerson;
+            }
+            else
+            {
+                Console.WriteLine("Henkilöä ei löydy, päivitys ei onnistu");
+                return null;
+            }
         }
     }
 }

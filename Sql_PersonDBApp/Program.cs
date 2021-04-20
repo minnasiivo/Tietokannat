@@ -24,6 +24,18 @@ namespace Sql_PersonDBApp
                     case "R":
                         _personView.PrintAllPeople();
                         break;
+                    case "U":
+                        _personView.UpdatePerson();
+                            break;
+                    case "D":
+                        _personView.DeletePerson();
+                            break;
+                    case "R1":
+                        _personView.PrintSinglePerson();
+                            break;
+                    case "R2":_personView.PrintByCIty();
+                            break;
+
                 }
                 Console.WriteLine("Paina enteriä jatkaaksesi...");
                 Console.ReadLine();
@@ -38,6 +50,8 @@ namespace Sql_PersonDBApp
             Console.WriteLine("[R] - Tulosta kaikki henkilöt");
             Console.WriteLine("[U] - Päivitä henkilön tietoja");
             Console.WriteLine("[D] - Poista henkilön tiedot");
+            Console.WriteLine("[R1] - Tulosta yksi henkilö");
+            Console.WriteLine("[R2] - Tulosta henkilöt kaupungin mukaan");
             Console.WriteLine("[X] - Lopeta ohjelma suoritus");
 
             return Console.ReadLine();
