@@ -25,7 +25,7 @@ namespace Sql_PersonDBApp.Repositories
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Henkilön lisääminen epäonnistui" + ex.Message);
                 return null;
             }
         }
@@ -39,7 +39,7 @@ namespace Sql_PersonDBApp.Repositories
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Henkilön tietoja ei voitu poistaa" + ex.Message);
             }
         }
 
@@ -63,9 +63,16 @@ namespace Sql_PersonDBApp.Repositories
 
         public Person UpdatePerson(Person person)
         {
+            try { 
            var updatePerson = _context.People.Update(person).Entity;
             _context.SaveChanges();
             return updatePerson;
         }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Henkilön tietojen päivittäminen ei onnistunut" + ex.Message);
+                return null;
+            }
+}
     }
 }

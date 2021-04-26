@@ -52,6 +52,7 @@ namespace Sql_PersonDBApp.views
             Console.Write("Anna poistettavan henkilön Id: ");
             long id =Convert.ToInt64(Console.ReadLine());
             _personService.Delete(id);
+            Console.WriteLine("henkilön poistaminen onnistui");
         }
 
         public void PrintAllPeople()
@@ -109,8 +110,8 @@ namespace Sql_PersonDBApp.views
         }
         private void PrintPerson(Person person)
         {
-        
-            Console.WriteLine($"{person.Id}\t\t{person.FirstName}\t\t{person.LastName}\t{person.Sex}\t{person.City}\t{person.DateOfBirth}\t{person.Height}");
+            string dateOfBirth = ((DateTime)person.DateOfBirth).ToString("d");
+            Console.WriteLine($"{person.Id}\t\t{person.FirstName}\t\t{person.LastName}\t{person.Sex}\t{person.City}\t{dateOfBirth}");
             
         }
         
